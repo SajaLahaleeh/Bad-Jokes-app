@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import './question.dart';
+import './answer.dart';
+import './button.dart';
 
 void main() {
   runApp(MyApp());
@@ -61,53 +64,14 @@ class MyAppState extends State<MyApp> {
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Container(
-              margin: EdgeInsets.all(25),
-              child: Text(
-                jokes[jokeIndex]["question"] as String,
-                style: TextStyle(fontSize: 27.5, fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-              ),
+            Question(
+              question: jokes[jokeIndex]["question"] as String,
             ),
-            Container(
-              margin: EdgeInsets.fromLTRB(15, 5, 15, 45),
-              child: Text(
-                jokes[jokeIndex]["answer"] as String,
-                style: TextStyle(fontSize: 27.5, fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-              ),
+            Answer(
+              answer: jokes[jokeIndex]["answer"] as String,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
-                  child: FloatingActionButton(
-                    onPressed: () {
-                      print("called");
-                      changeJokeIndex('prev');
-                    },
-                    child: Icon(
-                      Icons.arrow_left_rounded,
-                      size: 60,
-                    ),
-                    backgroundColor: Colors.orange,
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
-                  child: FloatingActionButton(
-                    onPressed: () {
-                      changeJokeIndex('next');
-                    },
-                    child: Icon(
-                      Icons.arrow_right_rounded,
-                      size: 60,
-                    ),
-                    backgroundColor: Colors.orange,
-                  ),
-                )
-              ],
+            Button(
+              changeJokeIndex: changeJokeIndex,
             )
           ],
         )),
